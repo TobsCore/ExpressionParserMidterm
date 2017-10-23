@@ -128,6 +128,17 @@ class ExpTest extends FunSuite {
     assert(ExpParser.eval(exp).get == Fraction(9, 7))
   }
 
+  test("Adding two Vals by calling + method") {
+    val exp = Val(Fraction(2,3)) + Val(Fraction(1,3))
+    assert(exp == Plus(Val(Fraction(2,3)), Val(Fraction(1,3))))
+  }
+
+  test("Simplify writing an expression") {
+    val exp = Val(2,3) + Val(1,3)
+    assert(exp == Plus(Val(Fraction(2,3)), Val(Fraction(1,3))))
+    assert(ExpParser.eval(exp).get == Fraction(1,1))
+  }
+
   test("Eval e3") {
     assert(ExpParser.eval(e3).get == Fraction(1, 104))
   }

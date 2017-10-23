@@ -35,9 +35,26 @@ case class Fraction(numerator: Int, denominator: Int) {
   }
 }
 
-sealed trait Exp
+sealed trait Exp {
+  def +(e: Exp): Plus = Plus(this, e)
 
+  def -(e: Exp): Minus = Minus(this, e)
+
+  def *(e: Exp): Multiply = Multiply(this, e)
+
+  def /(e: Exp): Divide = Divide(this, e)
+}
+
+/**
+  * In order to correctly represent values in an expression, the @code{Val}
+  * @param v
+  */
 case class Val(v: Fraction) extends Exp {
+  def this(numerator: Int, denominator: Int) = this(Fraction(numerator, denominator))
+}
+
+object Val {
+  def apply(numerator: Int, denominator: Int): Val = new Val(numerator, denominator)
 }
 
 case class Plus(e1: Exp, e2: Exp) extends Exp {
