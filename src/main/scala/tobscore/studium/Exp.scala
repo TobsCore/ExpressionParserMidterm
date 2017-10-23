@@ -62,26 +62,26 @@ object ExpParser {
   def eval(e: Exp): Option[Fraction] = e match {
     case Val(fraction) => fraction.simplify()
     case Plus(e1, e2) =>
-      val frac1 = eval(e1)
-      val frac2 = eval(e2)
+      val fraction1 = eval(e1)
+      val fraction2 = eval(e2)
 
-      if (frac1.isDefined && frac2.isDefined) {
-        val newDenominator = frac1.get.denominator * frac2.get.denominator
-        val newNumeratorFrac1 = frac1.get.numerator * frac2.get.denominator
-        val newNumeratorFrac2 = frac2.get.numerator * frac1.get.denominator
+      if (fraction1.isDefined && fraction2.isDefined) {
+        val newDenominator = fraction1.get.denominator * fraction2.get.denominator
+        val newNumeratorFrac1 = fraction1.get.numerator * fraction2.get.denominator
+        val newNumeratorFrac2 = fraction2.get.numerator * fraction1.get.denominator
 
         Fraction(newNumeratorFrac1 + newNumeratorFrac2, newDenominator).simplify()
       } else {
         None
       }
     case Minus(e1, e2) =>
-      val frac1 = eval(e1)
-      val frac2 = eval(e2)
+      val fraction1 = eval(e1)
+      val fraction2 = eval(e2)
 
-      if (frac1.isDefined && frac2.isDefined) {
-        val newDenominator = frac1.get.denominator * frac2.get.denominator
-        val newNumeratorFrac1 = frac1.get.numerator * frac2.get.denominator
-        val newNumeratorFrac2 = frac2.get.numerator * frac1.get.denominator
+      if (fraction1.isDefined && fraction2.isDefined) {
+        val newDenominator = fraction1.get.denominator * fraction2.get.denominator
+        val newNumeratorFrac1 = fraction1.get.numerator * fraction2.get.denominator
+        val newNumeratorFrac2 = fraction2.get.numerator * fraction1.get.denominator
 
         Fraction(newNumeratorFrac1 - newNumeratorFrac2, newDenominator).simplify()
 
@@ -89,20 +89,20 @@ object ExpParser {
         None
       }
     case Multiply(e1, e2) =>
-      val frac1 = eval(e1)
-      val frac2 = eval(e2)
+      val fraction1 = eval(e1)
+      val fraction2 = eval(e2)
 
-      if (frac1.isDefined && frac2.isDefined) {
-        Fraction(frac1.get.numerator * frac2.get.numerator, frac1.get.denominator * frac2.get.denominator).simplify()
+      if (fraction1.isDefined && fraction2.isDefined) {
+        Fraction(fraction1.get.numerator * fraction2.get.numerator, fraction1.get.denominator * fraction2.get.denominator).simplify()
       } else {
         None
       }
     case Divide(e1, e2) =>
-      val frac1 = eval(e1)
-      val frac2 = eval(e2)
+      val fraction1 = eval(e1)
+      val fraction2 = eval(e2)
 
-      if (frac1.isDefined && frac2.isDefined) {
-        Fraction(frac1.get.numerator * frac2.get.denominator, frac1.get.denominator * frac2.get.numerator).simplify()
+      if (fraction1.isDefined && fraction2.isDefined) {
+        Fraction(fraction1.get.numerator * fraction2.get.denominator, fraction1.get.denominator * fraction2.get.numerator).simplify()
       } else {
         None
       }
