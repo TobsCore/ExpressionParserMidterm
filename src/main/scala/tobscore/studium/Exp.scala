@@ -1,6 +1,17 @@
 import scala.annotation.tailrec
 
+/**
+  * Represents fractions, which consist of a numerator and denominator.
+  *
+  * @param numerator The numerator of the fraction
+  * @param denominator The denominator of the fraction
+  */
 case class Fraction(numerator: Int, denominator: Int) {
+  /**
+    * Simplifies the fraction by searching for the greatest common divider
+    *
+    * @return If the fraction could be simplified, this will return a simplified fraction, otherwise @code{None} will be returned.
+    */
   def simplify(): Option[Fraction] = {
     if (denominator == 0) {
       return None
