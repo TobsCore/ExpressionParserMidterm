@@ -1,7 +1,8 @@
-import org.scalatest.{BeforeAndAfter, FunSuite}
+import org.scalatest.FunSuite
 
 class ExpTest extends FunSuite {
 
+  // Question 4
   val e1 = Val(Fraction(1, 2))
   val e2 = Plus(Val(Fraction(3, 4)), e1)
   val e3 = Minus(Multiply(Plus(Val(Fraction(3, 4)), Val(Fraction(1, 2))), Val(Fraction(1, 2))), Divide(Val(Fraction(10, 13)), e2))

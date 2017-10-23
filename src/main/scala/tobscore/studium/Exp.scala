@@ -1,17 +1,6 @@
 import scala.annotation.tailrec
 
-/**
-  * Represents fractions, which consist of a numerator and denominator.
-  *
-  * @param numerator The numerator of the fraction
-  * @param denominator The denominator of the fraction
-  */
 case class Fraction(numerator: Int, denominator: Int) {
-  /**
-    * Simplifies the fraction by searching for the greatest common divider
-    *
-    * @return If the fraction could be simplified, this will return a simplified fraction, otherwise @code{None} will be returned.
-    */
   def simplify(): Option[Fraction] = {
     if (denominator == 0) {
       return None
@@ -21,13 +10,6 @@ case class Fraction(numerator: Int, denominator: Int) {
     Some(Fraction(numerator / gcd, denominator / gcd))
   }
 
-  /**
-    * Calculates the greatest common divisor for the given numbers. This is a recursive approach, which uses tailrecursion in order to avoid potential stackoverflows
-    *
-    * @param a The first number
-    * @param b The second number
-    * @return The greatest common divisor.
-    */
   @tailrec
   final def greatestCommonDivisor(a: Int, b: Int): Int = b match {
     case 0 => a
@@ -45,10 +27,6 @@ sealed trait Exp {
   def /(e: Exp): Divide = Divide(this, e)
 }
 
-/**
-  * In order to correctly represent values in an expression, the @code{Val}
-  * @param v
-  */
 case class Val(v: Fraction) extends Exp {
   def this(numerator: Int, denominator: Int) = this(Fraction(numerator, denominator))
 }
@@ -60,6 +38,7 @@ object Val {
 case class Plus(e1: Exp, e2: Exp) extends Exp {
 }
 
+// Question 3
 case class Minus(e1: Exp, e2: Exp) extends Exp {
 }
 
@@ -70,6 +49,7 @@ case class Divide(e1: Exp, e2: Exp) extends Exp {
 }
 
 object ExpParser {
+  // Question 5
   def pretty(e: Exp): String = e match {
     case Val(fraction) => s"(${fraction.numerator}/${fraction.denominator})"
     case Plus(e1, e2) => s"(${pretty(e1)}+${pretty(e2)})"
@@ -78,6 +58,7 @@ object ExpParser {
     case Divide(e1, e2) => s"(${pretty(e1)}//${pretty(e2)})"
   }
 
+  // Question 6
   def eval(e: Exp): Option[Fraction] = e match {
     case Val(fraction) => fraction.simplify()
     case Plus(e1, e2) =>
