@@ -2,12 +2,13 @@ import org.scalatest.FunSuite
 
 class ExpTest extends FunSuite {
 
-  // Question 4
+  // Question 4 (Answer Begin)
   val e1 = Val(Fraction(1, 2))
   val e2 = Plus(Val(Fraction(3, 4)), e1)
   val e3 = Minus(Multiply(Plus(Val(Fraction(3, 4)), Val(Fraction(1, 2))), Val(Fraction(1, 2))), Divide(Val(Fraction(10, 13)), e2))
   val e4 = Divide(Val(Fraction(5, 6)), Minus(e1, Val(Fraction(2, 4))))
   val e5 = Multiply(Val(Fraction(10, 13)), Val(Fraction(12, 14)))
+  // Question 4 (Answer End)
 
   val e1_short = Val(1, 2)
   val e2_short = Val(3, 4) + e1

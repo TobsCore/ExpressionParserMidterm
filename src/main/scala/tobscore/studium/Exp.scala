@@ -38,7 +38,7 @@ object Val {
 case class Plus(e1: Exp, e2: Exp) extends Exp {
 }
 
-// Question 3
+// Question 3 (Answer Begin)
 case class Minus(e1: Exp, e2: Exp) extends Exp {
 }
 
@@ -48,8 +48,10 @@ case class Multiply(e1: Exp, e2: Exp) extends Exp {
 case class Divide(e1: Exp, e2: Exp) extends Exp {
 }
 
+// Question 3 (Answer End)
+
 object ExpParser {
-  // Question 5
+  // Question 5 (Answer Begin)
   def pretty(e: Exp): String = e match {
     case Val(fraction) => s"(${fraction.numerator}/${fraction.denominator})"
     case Plus(e1, e2) => s"(${pretty(e1)}+${pretty(e2)})"
@@ -58,7 +60,9 @@ object ExpParser {
     case Divide(e1, e2) => s"(${pretty(e1)}//${pretty(e2)})"
   }
 
-  // Question 6
+  // Question 5 (Answer End)
+
+  // Question 6 (Answer Begin)
   def eval(e: Exp): Option[Fraction] = e match {
     case Val(fraction) => fraction.simplify()
     case Plus(e1, e2) =>
@@ -107,4 +111,6 @@ object ExpParser {
         None
       }
   }
+
+  // Question 6 (Answer End)
 }
